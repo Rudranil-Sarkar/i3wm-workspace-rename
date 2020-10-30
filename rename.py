@@ -6,7 +6,8 @@ i3 = i3ipc.Connection()
 def Rename_WorkSpace(name):
     workspace = i3.get_tree().find_focused().workspace()
     num = workspace.name.split(':')[0] # Keeping the number because without it the workspace became unswitchable
-    workspace.command('rename workspace "{}" to "{}"'.format(workspace.name, '{}: {}'.format(num, name)))
+    if name != '' and name != None and name != '\n':
+        workspace.command('rename workspace "{}" to "{}"'.format(workspace.name, '{}: {}'.format(num, name)))
 
 def main():
     out = subprocess.Popen(['echo'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
